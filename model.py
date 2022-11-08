@@ -11,7 +11,7 @@ import sys
 path = 'C:\\Users\\codyt\\Documents\\DSCI 644 - Software Engineering for Data Science\\Assignment 5\\'
 
 sys.path.append(path)
-from model_functions import import_csv, extract_wine_year_from_title, drop_nas
+from model_functions import import_csv, extract_wine_year_from_title, drop_nas, create_test_train_split
 
 from sklearn.model_selection import train_test_split
 #For using Ensemble model - Adaboost
@@ -50,7 +50,12 @@ enc = OrdinalEncoder()
 enc.fit(X0)
 X1 = enc.fit_transform(X0)
 
-X_train, X_test, y_train, y_test = train_test_split(X1, y, test_size=0.20, random_state=751)
+test_train = create_test_train_split(X1, y, 0.25)
+
+X_train = test_train[0]
+X_test = test_train[1]
+y_train = test_train[2]
+y_test = test_train[3]
 
 clf=AdaBoostClassifier(random_state=999)
 

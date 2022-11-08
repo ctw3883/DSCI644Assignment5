@@ -11,7 +11,7 @@ import numpy as np
 import os
 import sys
 sys.path.append('C:\\Users\\codyt\\Documents\\DSCI 644 - Software Engineering for Data Science\\Assignment 5\\')
-from model_functions import import_csv, extract_wine_year_from_title, drop_nas
+from model_functions import import_csv, extract_wine_year_from_title, drop_nas, create_test_train_split
 
 def test_import_csv_fail():
     filepath = 'C:\\Users\\codyt\\Documents\\DSCI 644 - Software Engineering for Data Science\\Assignment 5\\winemag-data-130k-v2.csv'
@@ -43,3 +43,9 @@ def test_drop_nas_fail1():
 def test_drop_nas_succeed():
     tester = pd.DataFrame(columns=['dummy'], data=['cow', np.nan,'dog'])
     assert tester.shape[0] > drop_nas(tester, 'dummy').shape[0]
+    
+def test_spliting_succeed():
+    Xtest = pd.DataFrame(columns=['dummy'], data=['yes','no','yes','no'])
+    ytest = pd.Series(data=['cow','dog','frog','log'])
+    return len(create_test_train_split(Xtest, ytest, 0.25)) == 4
+    
