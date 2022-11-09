@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np 
 import sys
 sys.path.append('C:\\Users\\codyt\\Documents\\DSCI 644 - Software Engineering for Data Science\\Assignment 5\\')
+sys.path.append('C:\\Users\\cwilson\\Downloads\\DSCI644Assignment5-main\\DSCI644Assignment5-main\\')
 
 
 from sklearn.model_selection import train_test_split

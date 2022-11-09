@@ -11,6 +11,7 @@ import numpy as np
 import os
 import sys
 sys.path.append('C:\\Users\\codyt\\Documents\\DSCI 644 - Software Engineering for Data Science\\Assignment 5\\')
+sys.path.append('C:\\Users\\cwilson\\Downloads\\DSCI644Assignment5-main\\DSCI644Assignment5-main\\')
 from model_functions import import_csv, extract_wine_year_from_title, drop_nas, create_test_train_split
 
 def test_import_csv_fail():

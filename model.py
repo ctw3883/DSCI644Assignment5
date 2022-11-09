@@ -8,9 +8,10 @@ import os
 import pandas as pd
 import numpy as np 
 import sys
-path = 'C:\\Users\\codyt\\Documents\\DSCI 644 - Software Engineering for Data Science\\Assignment 5\\'
+paths = ['C:\\Users\\codyt\\Documents\\DSCI 644 - Software Engineering for Data Science\\Assignment 5\\',
+         'C:\\Users\\cwilson\\Downloads\\DSCI644Assignment5-main\\DSCI644Assignment5-main\\']
+[sys.path.append(path) for path in paths]
 
-sys.path.append(path)
 from model_functions import import_csv, extract_wine_year_from_title, drop_nas, create_test_train_split
 
 from sklearn.model_selection import train_test_split
@@ -23,9 +24,15 @@ from sklearn.metrics import classification_report
 
 from sklearn.preprocessing import OrdinalEncoder
 
-data = import_csv(path + 'winemag-data-130k-v2.csv')
-data.isnull().sum()
+# for my work computer or personal computer 
+try:
+    data = import_csv(paths[0] + 'winemag-data-130k-v2.csv')
+except:
+    data = import_csv(paths[1] + 'winemag-data-130k-v2.csv')
 
+
+data.isnull().sum()
+# functions
 data['wineYear'] = extract_wine_year_from_title(data)
 data = drop_nas(data, 'wineYear')
 data = drop_nas(data, 'country')
