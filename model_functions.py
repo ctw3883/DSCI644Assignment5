@@ -33,3 +33,6 @@ def drop_nas(df, col):
 def create_test_train_split(X_df, y_series, split_size):
     X_train, X_test, y_train, y_test = train_test_split(X_df, y_series, test_size=split_size, random_state=751)
     return [X_train, X_test, y_train, y_test]
+
+def get_target(df, target_col):
+    return df[target_col], df.drop([target_col], axis=1)
