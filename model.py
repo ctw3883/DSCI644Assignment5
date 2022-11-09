@@ -12,7 +12,7 @@ paths = ['C:\\Users\\codyt\\Documents\\DSCI 644 - Software Engineering for Data 
          'C:\\Users\\cwilson\\Downloads\\DSCI644Assignment5-main\\DSCI644Assignment5-main\\']
 [sys.path.append(path) for path in paths]
 
-from model_functions import import_csv, extract_wine_year_from_title, drop_nas, create_test_train_split
+from model_functions import import_csv, extract_wine_year_from_title, drop_nas, create_test_train_split, get_target
 
 from sklearn.model_selection import train_test_split
 #For using Ensemble model - Adaboost
@@ -45,8 +45,7 @@ data = data[['points','country','price','province','taster_name', 'variety', 'wi
 data['taster_name'] = data['taster_name'].fillna('')
 data['price'] = data['price'].fillna(data['price'].median())
 
-y = data['points']
-X = data.drop(['points'], axis = 1)
+y, X = get_target(data, 'points')
 X0 = pd.get_dummies(X)
 
 X0 = X[['country','province','variety','price','wineYear','winery']]
