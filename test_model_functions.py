@@ -12,7 +12,7 @@ import os
 import sys
 sys.path.append('C:\\Users\\codyt\\Documents\\DSCI 644 - Software Engineering for Data Science\\Assignment 5\\')
 sys.path.append('C:\\Users\\cwilson\\Downloads\\DSCI644Assignment5-main\\DSCI644Assignment5-main\\')
-from model_functions import import_csv, extract_wine_year_from_title, drop_nas, create_test_train_split
+from model_functions import import_csv, extract_wine_year_from_title, drop_nas, create_test_train_split, get_target
 
 def test_import_csv_fail():
     filepath = 'C:\\Users\\codyt\\Documents\\DSCI 644 - Software Engineering for Data Science\\Assignment 5\\winemag-data-130k-v2.csv'
@@ -48,5 +48,19 @@ def test_drop_nas_succeed():
 def test_spliting_succeed():
     Xtest = pd.DataFrame(columns=['dummy'], data=['yes','no','yes','no'])
     ytest = pd.Series(data=['cow','dog','frog','log'])
-    return len(create_test_train_split(Xtest, ytest, 0.25)) == 4
+    assert len(create_test_train_split(Xtest, ytest, 0.25)) == 4
     
+def test_get_target_fail():
+    tester = pd.DataFrame(columns=['x0','x1','y'], data=[[1,2,3],[1,2,5],[2,4,8]])
+    y, X = get_target(tester, 'y')
+    assert isinstance(y, pd.DataFrame)
+    
+def test_get_target_fail1():
+    tester = pd.DataFrame(columns=['x0','x1','y'], data=[[1,2,3],[1,2,5],[2,4,8]])
+    y, X = get_target(tester, 'y')
+    assert y.shape == X.size
+    
+def test_get_target_succeed():
+    tester = pd.DataFrame(columns=['x0','x1','y'], data=[[1,2,3],[1,2,5],[2,4,8]])
+    y, X = get_target(tester, 'y')
+    assert isinstance(y, pd.Series)  
