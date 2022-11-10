@@ -48,3 +48,12 @@ def train_model(X_train, y_train):
     clf.fit(X_train, y_train)
     
     return clf
+
+def grid_optimize_model(clf, X_train, y_train):
+    mod = GridSearchCV(clf, param_grid = {'max_depth':[1,3,5,7,9],
+                                      'min_samples_leaf':[1,5,9,13,17,25],
+                                      'min_samples_split':[2,5,10,15,20]})
+    mod.fit(X_train, y_train)
+    
+    return mod.best_estimator_
+    
