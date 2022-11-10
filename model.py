@@ -12,7 +12,7 @@ paths = ['C:\\Users\\codyt\\Documents\\DSCI 644 - Software Engineering for Data 
          'C:\\Users\\cwilson\\Downloads\\DSCI644Assignment5-main\\DSCI644Assignment5-main\\']
 [sys.path.append(path) for path in paths]
 
-from model_functions import import_csv, extract_wine_year_from_title, drop_nas, create_test_train_split, get_target, select_variables, train_model
+from model_functions import import_csv, extract_wine_year_from_title, drop_nas, create_test_train_split, get_target, select_variables, train_model, grid_optimize_model
 
 from sklearn.model_selection import train_test_split
 #For using Ensemble model - Adaboost
@@ -81,3 +81,23 @@ clf = train_model(X_train, y_train)
 print('Base model score: ', clf.score(X_test, y_test))
 
 # clf.get_params().keys()
+
+clf_optimized = grid_optimize_model(clf, X_train, y_train)
+
+
+clf_optimized.score(X_test, y_test)
+
+clf_optimized.feature_importances_
+
+features = pd.Series(clf_optimized.feature_importances_, index=X0.columns)
+features.sort_values(ascending=False)
+
+y_train_predicted = clf_optimized.predict(X_train)
+
+y_test_predicted = clf_optimized.predict(X_test)
+
+print(r2_score(y_train, y_train_predicted))
+
+print(mean_absolute_percentage_error(y_train, y_train_predicted))
+
+

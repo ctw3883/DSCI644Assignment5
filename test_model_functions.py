@@ -12,7 +12,7 @@ import os
 import sys
 sys.path.append('C:\\Users\\codyt\\Documents\\DSCI 644 - Software Engineering for Data Science\\Assignment 5\\')
 sys.path.append('C:\\Users\\cwilson\\Downloads\\DSCI644Assignment5-main\\DSCI644Assignment5-main\\')
-from model_functions import import_csv, extract_wine_year_from_title, drop_nas, create_test_train_split, get_target, select_variables, train_model
+from model_functions import import_csv, extract_wine_year_from_title, drop_nas, create_test_train_split, get_target, select_variables, train_model, grid_optimize_model
 
 from sklearn import tree
 
@@ -88,3 +88,4 @@ def test_train_model_succeed():
     y_train = np.array([[100],[101],[102]])
     clf = train_model(X_train, y_train)
     assert not isinstance(clf, tree.DecisionTreeRegressor)
+    
