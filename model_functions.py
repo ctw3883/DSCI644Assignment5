@@ -19,6 +19,7 @@ from sklearn.ensemble import AdaBoostClassifier
 from sklearn.model_selection import GridSearchCV
 # For Diagnosis of classification model
 from sklearn.metrics import classification_report
+from sklearn import tree
 
 def import_csv(filepath):
     return pd.read_csv(filepath, index_col=0)
@@ -36,3 +37,14 @@ def create_test_train_split(X_df, y_series, split_size):
 
 def get_target(df, target_col):
     return df[target_col], df.drop([target_col], axis=1)
+
+def select_variables(df, vars_list):
+    return df[vars_list]
+
+def train_model(X_train, y_train):
+        
+    clf = tree.DecisionTreeRegressor()
+    
+    clf.fit(X_train, y_train)
+    
+    return clf
